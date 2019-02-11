@@ -14,8 +14,64 @@ app.use((req, res, next) => {
   }
 });
 
-app.get("/foobar", function(req, res) {
-  res.send("Hello world!");
+app.post("/signup", (res, req) => {
+  res.send({ success: true });
+});
+
+app.post("/login", (res, req) => {
+  res.send({ success: true });
+});
+
+app.get("/allcupcakes", (req, res) => {
+  res.send({
+    success: true,
+    cupcakes: [
+      {
+        name: "Aggressive cupcake",
+        categorie: "Vanilla",
+        picture: "cupcake.jpg",
+        price: "2",
+        stock: "5",
+        username: "bob"
+      },
+      {
+        name: "Nice cupcake",
+        categorie: "Chocolate",
+        picture: "cupcake.jpg",
+        price: "4",
+        stock: "2",
+        username: "sue"
+      }
+    ]
+  });
+});
+
+app.post("/searchcupcakes", (req, res) => {
+  res.send({
+    success: true,
+    cupcakes: [
+      {
+        name: "Aggressive cupcake",
+        categorie: "Vanilla",
+        picture: "cupcake.jpg",
+        price: "2",
+        stock: "5",
+        username: "bob"
+      },
+      {
+        name: "Nice cupcake",
+        categorie: "Chocolate",
+        picture: "cupcake.jpg",
+        price: "4",
+        stock: "2",
+        username: "sue"
+      }
+    ]
+  });
+});
+
+app.post("/addcupcake", (res, req) => {
+  res.send({ success: true });
 });
 
 app.listen(4000, function() {
