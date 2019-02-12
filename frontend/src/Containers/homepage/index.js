@@ -2,7 +2,19 @@ import React, { Component } from "react";
 import "./homepage.css";
 import Login from "../../Components/login";
 import { Link } from "react-router-dom";
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import firebase from "../../loginGoogle.js";
+=======
+// import firebase from "firebase";
+// var provider = new firebase.auth.GoogleAuthProvider();
+// firebase.auth().signInWithPopup(provider);
+>>>>>>> Stashed changes
+=======
+// import firebase from "firebase";
+// var provider = new firebase.auth.GoogleAuthProvider();
+// firebase.auth().signInWithPopup(provider);
+>>>>>>> Stashed changes
 
 class Homepage extends Component {
   googleSignIn() {

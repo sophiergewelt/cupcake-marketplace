@@ -4,6 +4,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 import AllCupcakes from "./Containers/all-cupcakes/";
 import Homepage from "./Containers/homepage/";
 import Signup from "./Components/signup/";
+// import AddCupcake from "./Components/addcupcake/AddCupcake";
 
 class App extends Component {
   renderAllCupcakes = () => {
@@ -17,6 +18,10 @@ class App extends Component {
   renderSignupPage = () => {
     return <Signup />;
   };
+
+  // renderAddCupcake = () => {
+  //   return <AddCupcake />;
+  // };
 
   // renderCart = () => {
   //   return <Cart />;
@@ -34,6 +39,11 @@ class App extends Component {
             />
             <Route exact={true} path="/homepage" render={this.renderHomePage} />
             <Route exact={true} path="/signup" render={this.renderSignupPage} />
+            {/* <Route
+              exact={true}
+              path="/addcupcake"
+              render={this.renderAddCupcake}
+            /> */}
             {/* <Route exact={true} path="/cart" render={this.renderCart} /> */}
           </div>
         </BrowserRouter>
