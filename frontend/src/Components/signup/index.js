@@ -86,7 +86,7 @@ class Signup extends Component {
           }
         });
 
-      this.setState({ username: "", password: "" });
+      this.setState({ username: "", password: "", confirmPassword: "" });
       console.log("I'm sending to the server: ", body);
     } else {
       console.log("wrong password gunzo!!!");
