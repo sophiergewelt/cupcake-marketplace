@@ -98,18 +98,21 @@ class Signup extends Component {
             type="text"
             onChange={this.handleNameChange}
             value={this.state.username}
+            placeholder="username"
           />
           <h3>Enter password</h3>
           <input
             type="password"
             onChange={this.handlePasswordChange}
             value={this.state.password}
+            placeholder="********"
           />
           <h3>Confirm password</h3>
           <input
             type="password"
             onChange={this.handlePasswordChangeConfirm}
             value={this.state.confirmPassword}
+            placeholder="********"
           />
 
           <div>

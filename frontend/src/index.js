@@ -10,9 +10,12 @@ import firebase from "./loginGoogle.js";
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    store.dispatch({ type: "logginStatus", status: true });
+    console.log("firebase autentification sucessfull");
+    console.log("fuser:", user);
+
+    store.dispatch({ type: "login-success", status: true });
   } else {
-    store.dispatch({ type: "logginStatus", status: false });
+    store.dispatch({ type: "login-failed", status: false });
   }
   // console.log(status);
 });
