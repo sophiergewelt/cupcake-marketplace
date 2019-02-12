@@ -107,7 +107,7 @@ app.post("/addcupcake", (req, res) => {
 app.get("/allcupcakes", (req, res) => {
   let db = dbs.db("alibay");
   db.collection("cupcakes")
-    .find({ stock: { $ne: 0 } })
+    .find({})
     .toArray((err, result) => {
       if (err) return res.status(500).send(err);
       res.send(JSON.stringify({ success: true, cupcakes: result }));
