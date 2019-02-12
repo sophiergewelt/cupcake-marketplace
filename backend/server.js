@@ -30,7 +30,7 @@ app.post("/signup", (req, res) => {
   db.collection("users").findOne(
     { username: req.body.username },
     (err, result) => {
-      if (err) throw err;
+      if (err) return res.status(500).send(err);
       if (result) {
         res.send(JSON.stringify({ success: false }));
       } else {
@@ -40,7 +40,7 @@ app.post("/signup", (req, res) => {
         };
         db.collection("users").insertOne(user, (err, result) => {
           if (err) {
-            throw err;
+            if (err) return res.status(500).send(err);
           }
         });
         res.send(JSON.stringify({ success: true }));
@@ -54,7 +54,7 @@ app.post("/login", (req, res) => {
   db.collection("users").findOne(
     { username: req.body.username },
     (err, result) => {
-      if (err) throw err;
+      if (err) return res.status(500).send(err);
       if (result) {
         if (result.password === sha256(req.body.password)) {
           res.send(
@@ -82,7 +82,7 @@ app.post("/addcupcake", (req, res) => {
   db.collection("users").findOne(
     { _id: ObjectID(req.body.userId) },
     (err, result) => {
-      if (err) throw err;
+      if (err) return res.status(500).send(err);
       if (result) {
         let newCupcake = {
           name: req.body.name,
@@ -94,7 +94,7 @@ app.post("/addcupcake", (req, res) => {
           userId: req.body.userId
         };
         db.collection("cupcakes").insertOne(newCupcake, (err, result) => {
-          if (err) throw err;
+          if (err) return res.status(500).send(err);
         });
         res.send(JSON.stringify({ success: true }));
       } else {
@@ -106,52 +106,29 @@ app.post("/addcupcake", (req, res) => {
 
 app.get("/allcupcakes", (req, res) => {
   let db = dbs.db("alibay");
-  res.send({
-    success: true,
-    cupcakes: [
-      {
-        name: "Aggressive cupcake",
-        description: "A nice little sweetness.",
-        category: "Vanilla",
-        picture: "cupcake.jpg",
-        price: "2",
-        stock: "5",
-        userId: "5c6219428deaf257dfaf4a33"
-      },
-      {
-        name: "Nice cupcake",
-        category: "Chocolate",
-        picture: "cupcake.jpg",
-        price: "4",
-        stock: "2",
-        username: "sue"
-      }
-    ]
-  });
+  db.collection("cupcakes")
+    .find({ stock: { $ne: 0 } })
+    .toArray((err, result) => {
+      if (err) return res.status(500).send(err);
+      res.send(JSON.stringify({ success: true, cupcakes: result }));
+    });
 });
 
 app.post("/searchcupcakes", (req, res) => {
-  res.send({
-    success: true,
-    cupcakes: [
-      {
-        name: "Aggressive cupcake",
-        categorie: "Vanilla",
-        picture: "cupcake.jpg",
-        price: "2",
-        stock: "5",
-        username: "bob"
-      },
-      {
-        name: "Nice cupcake",
-        categorie: "Chocolate",
-        picture: "cupcake.jpg",
-        price: "4",
-        stock: "2",
-        username: "sue"
-      }
-    ]
+  let db = dbs.db("alibay");
+  //let unregQuery = req.body.query;
+  //let query = new RegExp(".*" + unregQuery + ".", "i");
+  db.collection("cupcakes").createIndex({
+    name: "text",
+    description: "text",
+    category: "text"
   });
+  db.collection("cupcakes")
+    .find({ $text: { $search: req.body.query } })
+    .toArray((err, result) => {
+      if (err) return res.status(500).send(err);
+      res.send(JSON.stringify({ success: true, cupcakes: result }));
+    });
 });
 
 app.listen(4000, function() {
