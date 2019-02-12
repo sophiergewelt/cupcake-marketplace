@@ -2,6 +2,7 @@ let express = require("express");
 let cors = require("cors");
 let sha256 = require("sha256");
 const MongoClient = require("mongodb").MongoClient;
+let ObjectID = require("mongodb").ObjectID;
 let bodyParser = require("body-parser");
 
 const url = "mongodb://admin:admin123@ds111993.mlab.com:11993/alibay";
@@ -29,6 +30,7 @@ app.post("/signup", (req, res) => {
   db.collection("users").findOne(
     { username: req.body.username },
     (err, result) => {
+      if (err) throw err;
       if (result) {
         res.send(JSON.stringify({ success: false }));
       } else {
@@ -40,7 +42,6 @@ app.post("/signup", (req, res) => {
           if (err) {
             throw err;
           }
-          console.log(result);
         });
         res.send(JSON.stringify({ success: true }));
       }
@@ -53,6 +54,7 @@ app.post("/login", (req, res) => {
   db.collection("users").findOne(
     { username: req.body.username },
     (err, result) => {
+      if (err) throw err;
       if (result) {
         if (result.password === sha256(req.body.password)) {
           res.send(
@@ -75,21 +77,50 @@ app.post("/login", (req, res) => {
   );
 });
 
+app.post("/addcupcake", (req, res) => {
+  let db = dbs.db("alibay");
+  db.collection("users").findOne(
+    { _id: ObjectID(req.body.userId) },
+    (err, result) => {
+      if (err) throw err;
+      if (result) {
+        let newCupcake = {
+          name: req.body.name,
+          description: req.body.description,
+          category: req.body.category,
+          picture: req.body.picture,
+          price: req.body.price,
+          stock: req.body.stock,
+          userId: req.body.userId
+        };
+        db.collection("cupcakes").insertOne(newCupcake, (err, result) => {
+          if (err) throw err;
+        });
+        res.send(JSON.stringify({ success: true }));
+      } else {
+        res.send(JSON.stringify({ success: false }));
+      }
+    }
+  );
+});
+
 app.get("/allcupcakes", (req, res) => {
+  let db = dbs.db("alibay");
   res.send({
     success: true,
     cupcakes: [
       {
         name: "Aggressive cupcake",
-        categorie: "Vanilla",
+        description: "A nice little sweetness.",
+        category: "Vanilla",
         picture: "cupcake.jpg",
         price: "2",
         stock: "5",
-        username: "bob"
+        userId: "5c6219428deaf257dfaf4a33"
       },
       {
         name: "Nice cupcake",
-        categorie: "Chocolate",
+        category: "Chocolate",
         picture: "cupcake.jpg",
         price: "4",
         stock: "2",
@@ -121,10 +152,6 @@ app.post("/searchcupcakes", (req, res) => {
       }
     ]
   });
-});
-
-app.post("/addcupcake", (req, res) => {
-  res.send({ success: true });
 });
 
 app.listen(4000, function() {
