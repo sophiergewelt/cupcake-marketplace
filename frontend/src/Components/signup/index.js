@@ -1,10 +1,6 @@
-import "../App.css";
 import React, { Component } from "react";
-import Login from "./login.js";
+import Login from "../../Components/login";
 
-/*****************************************************************
- * SIGNUP COMPONENT
- ********************************************************************/
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -108,8 +104,9 @@ class Signup extends Component {
         <form onSubmit={this.handleSubmit}>
           <h2>Sign up!</h2>
           <div>
-            Welcome to AliCupcake! Please fill in your information and you will
-            soon be on your way to browse our fantastic collection of cupcakes!
+            Welcome to The Cupcake Market! Please fill in your information and
+            you will soon be on your way to browse our fantastic collection of
+            cupcakes!
           </div>
           <h3>Enter user name</h3>
           <input

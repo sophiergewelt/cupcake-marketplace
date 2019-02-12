@@ -1,11 +1,7 @@
-import "../App.css";
-import { connect, Provider } from "react-redux";
+import { connect } from "react-redux";
 import React, { Component } from "react";
 
-/*****************************************************************
- * LOGIN COMPONENT (copy pasted from the signup)
- ********************************************************************/
-class UnconnectedLogin extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +58,6 @@ class UnconnectedLogin extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <h1>Log in</h1>
           <h3>Enter user name</h3>
           <input
             type="text"
@@ -81,7 +76,5 @@ class UnconnectedLogin extends Component {
     );
   }
 }
-let Login = connect()(UnconnectedLogin);
-//we do this to connect to the store. we need to connect because when we login we need to dispatch
 
-export default Login;
+export default connect()(Login);

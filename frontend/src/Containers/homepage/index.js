@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./homepage.css";
+import Login from "../../Components/login";
+import { Link } from "react-router-dom";
 
 class Homepage extends Component {
   render() {
@@ -10,20 +12,19 @@ class Homepage extends Component {
       <div>
         <p>{welcomeText}</p>
         {/*placeholder for Login class (Yann) */}
-        Login
-        <input type="text" />
-        Password
-        <input type="text" />
-        <div>Don't have an account yet? Sign up!</div>
-        {/*placeholder for Signup class (Yann) */}
-        <input type="text" />
+        <p>Login</p>
+        <Login />
+        <div>
+          <Link to={"/signup/"}>Don't have an account yet? Sign up!</Link>
+        </div>
         <div>
           <img src="" alt="big-cupcake" />
         </div>
         {/*placeholder for search field (Yann) */}
         Search
-        <input type="text" />
-        {/*placeholder for random cupcake display (Sophie) */}
+        <form>
+          <input type="text" />
+        </form>
       </div>
     );
   }
