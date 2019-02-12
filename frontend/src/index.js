@@ -6,14 +6,15 @@ import { reducer as cupcakeReducer } from "./store/cupcakes/reducer";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
+import firebase from "./loginGoogle.js";
 
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    store.dispatch({ type: "logginStatus", status: true });
-  } else {
-    store.dispatch({ type: "logginStatus", status: false });
-  }
-});
+// firebase.auth().onAuthStateChanged(function(user) {
+//   if (user) {
+//     store.dispatch({ type: "logginStatus", status: true });
+//   } else {
+//     store.dispatch({ type: "logginStatus", status: false });
+//   }
+// });
 
 const store = createStore(
   cupcakeReducer,

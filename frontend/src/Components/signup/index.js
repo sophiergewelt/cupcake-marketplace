@@ -34,21 +34,6 @@ class Signup extends Component {
     this.setState({ confirmPassword: event.target.value });
   }
 
-  //   handlePasswordChange(event) {
-  // does not work: cant use getElementById in redux
-  //     if (
-  //       document.getElementById("password").value ==
-  //       document.getElementById("confirm_password").value
-  //     ) {
-  //       document.getElementById("message").style.color = "green";
-  //       document.getElementById("message").innerHTML = "matching";
-  //       this.setState({ password: event.target.value });
-  //     } else {
-  //       document.getElementById("message").style.color = "red";
-  //       document.getElementById("message").innerHTML = "not matching";
-  //     }
-  //   }
-
   handleCityChange(event) {
     console.log("new city", event.target.value);
     this.setState({ city: event.target.value });
