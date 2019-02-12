@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { connect, Provider } from "react-redux";
-import { createStore } from "redux";
 import styled from "styled-components";
 
 const StyledForm = styled.form`

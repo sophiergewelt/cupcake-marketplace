@@ -8,7 +8,6 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import firebase from "./loginGoogle.js";
 
-<<<<<<< Updated upstream
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     store.dispatch({ type: "logginStatus", status: true });
@@ -17,15 +16,6 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
   // console.log(status);
 });
-=======
-// firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     store.dispatch({ type: "logginStatus", status: true });
-//   } else {
-//     store.dispatch({ type: "logginStatus", status: false });
-//   }
-// });
->>>>>>> Stashed changes
 
 const store = createStore(
   cupcakeReducer,

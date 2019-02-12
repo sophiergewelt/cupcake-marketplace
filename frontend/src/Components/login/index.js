@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import AllCupcakes from "../../Containers/all-cupcakes";
 import { Link } from "react-router-dom";
+import firebase from "../../loginGoogle.js";
 
 class Login extends Component {
   constructor(props) {
@@ -14,6 +15,11 @@ class Login extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  googleSignIn() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  }
+
   handleNameChange(event) {
     this.setState({ username: event.target.value });
     //console.log("username", username);
@@ -76,7 +82,11 @@ class Login extends Component {
           />
           <input type="submit" />
         </form>
-        <Link to={"/signup/"}>Don't have an account yet? Sign up!</Link>
+        Sign in with Google:
+        <button onClick={this.googleSignIn}>Google!</button>
+        <div>
+          <Link to={"/signup/"}>Don't have an account yet? Sign up!</Link>
+        </div>
       </div>
     );
   }
