@@ -10,10 +10,12 @@ class AllCupcakes extends Component {
         <p>{welcomeText}</p>
         <p />
         <input
+          // placeholder for SellCupcakes class
           type="button"
           value="Sell cupcakes"
           onClick={this.sellCupcakes}
         />
+        {/* placeholger for Cart */}
         <input type="button" value="Cart" onClick={this.shoppingCart} />
         <div className="App">
           <h1>Browse the cupcakes</h1>

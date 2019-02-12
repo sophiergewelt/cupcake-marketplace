@@ -32,7 +32,7 @@ class App extends Component {
               path="/all-cupcakes"
               render={this.renderAllCupcakes}
             />
-            <Route exact={true} path="/homepage" render={this.renderHomePage} />
+            <Route exact={true} path="/" render={this.renderHomePage} />
             <Route exact={true} path="/signup" render={this.renderSignupPage} />
             {/* <Route exact={true} path="/cart" render={this.renderCart} /> */}
           </div>
