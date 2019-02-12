@@ -10,11 +10,11 @@ class Homepage extends Component {
         <div>
           <img src="" alt="big-cupcake" />
         </div>
-        {/*placeholder for search field (Yann) */}
+        {/* placeholder for search field (Yann)
         Search
         <form>
           <input type="text" />
-        </form>
+        </form> */}
       </div>
     );
   }

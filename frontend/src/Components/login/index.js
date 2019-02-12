@@ -73,12 +73,14 @@ class Login extends Component {
             type="text"
             onChange={this.handleNameChange}
             value={this.state.username}
+            placeholder="username"
           />
           <h3>Enter password</h3>
           <input
-            type="text"
+            type="password"
             onChange={this.handlePasswordChange}
             value={this.state.password}
+            placeholder="********"
           />
           <input type="submit" />
         </form>
