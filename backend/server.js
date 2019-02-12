@@ -1,19 +1,21 @@
 let express = require("express");
 let cors = require("cors");
 let sha256 = require("sha256");
+const MongoClient = require("mongodb").MongoClient;
 let bodyParser = require("body-parser");
 
 const url = "mongodb://admin:admin123@ds111993.mlab.com:11993/alibay";
 let dbs = undefined;
+
+MongoClient.connect(url, (err, allDbs) => {
+  return (dbs = allDbs);
+});
 
 let app = express();
 app.use(cors());
 app.use(bodyParser.raw({ type: "*/*" }));
 
 app.use((req, res, next) => {
-  MongoClient.connect(url, (err, allDbs) => {
-    dbs = allDbs;
-  });
   try {
     req.body = JSON.parse(req.body.toString());
     next();
@@ -22,59 +24,55 @@ app.use((req, res, next) => {
   }
 });
 
-app.post("/signup", (res, req) => {
+app.post("/signup", (req, res) => {
   let db = dbs.db("alibay");
-  let findUser = db
-    .collection("user")
-    .find({ username: req.body.username })
-    .toArray((err, result) => {
-      console.log(result, err);
-      return result;
-    });
-  if (findUser.lenght < 1) {
-    res.send(JSON.stringify({ success: false }));
-  } else {
-    let user = {
-      username: req.body.username,
-      password: sha256(req.body.password)
-    };
-    db.collection("users").insertOne(user, (err, result) => {
-      if (err) {
-        throw err;
+  db.collection("users").findOne(
+    { username: req.body.username },
+    (err, result) => {
+      if (result) {
+        res.send(JSON.stringify({ success: false }));
+      } else {
+        let user = {
+          username: req.body.username,
+          password: sha256(req.body.password)
+        };
+        db.collection("users").insertOne(user, (err, result) => {
+          if (err) {
+            throw err;
+          }
+          console.log(result);
+        });
+        res.send(JSON.stringify({ success: true }));
       }
-      console.log(result);
-    });
-    res.send(JSON.stringify({ success: true }));
-  }
+    }
+  );
 });
 
-app.post("/login", (res, req) => {
+app.post("/login", (req, res) => {
   let db = dbs.db("alibay");
-  let userArr = db
-    .collection("users")
-    .find({ username: req.body.username })
-    .toArray((err, result) => {
-      return result;
-    });
-  if (userArr.lenght > 0) {
-    let user = userArr[0];
-    if (user.password === sha256(req.body.password)) {
-      res.send(
-        JSON.stringify({
-          success: true,
-          user: {
-            userId: user._id,
-            username: user.username,
-            location: user.location
-          }
-        })
-      );
-    } else {
-      res.send(JSON.stringify({ success: false }));
+  db.collection("users").findOne(
+    { username: req.body.username },
+    (err, result) => {
+      if (result) {
+        if (result.password === sha256(req.body.password)) {
+          res.send(
+            JSON.stringify({
+              success: true,
+              user: {
+                userId: result._id,
+                username: result.username,
+                location: result.location
+              }
+            })
+          );
+        } else {
+          res.send(JSON.stringify({ success: false }));
+        }
+      } else {
+        res.send(JSON.stringify({ success: false }));
+      }
     }
-  } else {
-    res.send(JSON.stringify({ success: false }));
-  }
+  );
 });
 
 app.get("/allcupcakes", (req, res) => {
@@ -125,7 +123,7 @@ app.post("/searchcupcakes", (req, res) => {
   });
 });
 
-app.post("/addcupcake", (res, req) => {
+app.post("/addcupcake", (req, res) => {
   res.send({ success: true });
 });
 
