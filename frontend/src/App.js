@@ -13,7 +13,31 @@ class App extends Component {
     return <Homepage />;
   };
 
+import { connect, Provider } from "react-redux";
+import React, { Component } from "react";
+// import Login from "./logincomponents/login.js";
+// import Signup from "./logincomponents/signup.js";
+// import reducer from "./logincomponents/reducer.js";
+// import logo from "./logo.svg";
+import "./App.css";
+
+
+
+class UnconnectedApp extends Component {
   render() {
+    // console.log("sid!!!", this.props.sid);
+    if (this.props.lgin) {
+      console.log("made it trough the IF UnconnectedApp ");
+      alert("Connection to chat room successful");
+      return (
+        <div>
+          {/* this is my session id : {this.props.sid} */}
+          TESTING TESTING TESTING
+          {/* <Chat /> */}
+        </div>
+      );
+    }
+
     return (
       <div>
         <BrowserRouter>
@@ -30,5 +54,10 @@ class App extends Component {
     );
   }
 }
+let App = connect(function(state) {
+  console.log("redux! ", state);
+
+})(UnconnectedApp);
+
 
 export default App;

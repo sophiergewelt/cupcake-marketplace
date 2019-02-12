@@ -6,6 +6,7 @@ import { reducer as cupcakeReducer } from "./store/cupcakes/reducer";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
+import reducer from "./logincomponents/reducer.js";
 
 const store = createStore(
   cupcakeReducer,
@@ -21,7 +22,19 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+const store = createStore(
+  reducer,
+  {}, // initial state
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <div>
+      <App />
+    </div>
+  </Provider>,
+  document.getElementById("root")
+);
+
 serviceWorker.unregister();
