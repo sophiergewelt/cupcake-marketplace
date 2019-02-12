@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../App.js";
-// import "./main.css";
-import SingleCupcake from "../single-cupcake/singleCupcake";
+import "../../App.js";
+import "./display-all-cupcakes.css";
+import SingleCupcake from "../single-cupcake";
 
 class DisplayAllCupcakes extends Component {
   componentDidMount() {

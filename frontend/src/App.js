@@ -1,25 +1,31 @@
 import "./App.css";
 import React, { Component } from "react";
-import DisplayAllCupcakes from "./display-all-cupcakes/displayAllCupcakes";
+import { Route, BrowserRouter } from "react-router-dom";
+import AllCupcakes from "./Containers/all-cupcakes/";
+import Homepage from "./Containers/homepage/";
 
 class App extends Component {
-  render() {
-    let welcomeText = "Welcome *user*";
+  renderAllCupcakes = () => {
+    return <AllCupcakes />;
+  };
 
+  renderHomePage = () => {
+    return <Homepage />;
+  };
+
+  render() {
     return (
       <div>
-        <h2>{welcomeText}</h2>
-        <p />
-        <input
-          type="button"
-          value="Sell cupcakes"
-          onClick={this.sellCupcakes}
-        />
-        <input type="button" value="Cart" onClick={this.shoppingCart} />
-        <div className="App">
-          <h1>Browse the cupcakes</h1>
-          <DisplayAllCupcakes />
-        </div>
+        <BrowserRouter>
+          <div>
+            <Route
+              exact={true}
+              path="/all-cupcakes"
+              render={this.renderAllCupcakes}
+            />
+            <Route exact={true} path="/homepage" render={this.renderHomePage} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
