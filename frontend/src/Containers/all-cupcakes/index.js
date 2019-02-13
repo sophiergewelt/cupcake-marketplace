@@ -3,7 +3,7 @@ import "./all-cupcakes.css";
 import DisplayAllCupcakes from "../../Components/display-all-cupcakes/";
 import Search from "../../search/search";
 import styled from "styled-components";
-
+import Logout from "../../Components/login/logout";
 const MainContainer = styled.div`
   text-align: -webkit-center;
 `;
@@ -24,6 +24,7 @@ class AllCupcakes extends Component {
           <Search />
           <h3>Browse our cupcakes</h3>
           <DisplayAllCupcakes />
+          <Logout />
         </div>
       </MainContainer>
     );

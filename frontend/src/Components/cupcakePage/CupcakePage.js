@@ -107,7 +107,7 @@ class CupcakePage extends Component {
     return (
       <div>
         {this.state.cupcake === undefined
-          ? "This cupcakeis a lie"
+          ? "The cupcake is a lie"
           : this.displayCupcake()}{" "}
       </div>
     );
