@@ -19,7 +19,7 @@ const StyledContainer = styled.div`
   padding: 5px;
   width: 400;
   margin-bottom: 2%;
-  background-color: #fff;
+  background-color: #fcedef;
   text-decoration: none;
 `;
 
