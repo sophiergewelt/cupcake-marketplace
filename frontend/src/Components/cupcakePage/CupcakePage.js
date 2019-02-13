@@ -7,7 +7,7 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 5px;
-  height: 400px;
+  height: 350px;
   width: 1000px;
   color: #2e2e2e;
 `;
@@ -51,7 +51,7 @@ const StyledDescription = styled.div`
 
 const StyledPriceAndStock = styled.div`
   font-size: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 `;
 
 class CupcakePage extends Component {
