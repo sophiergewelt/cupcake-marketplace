@@ -2,7 +2,10 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import AllCupcakes from "../../Containers/all-cupcakes";
 import { Link } from "react-router-dom";
-import firebase from "../../loginGoogle.js";
+import firebase from "../../Components/login/loginGoogle.js";
+import logo from "../../images/logo.png";
+import googleSignin from "../../images/google.png";
+import "./login.css";
 
 class Login extends Component {
   constructor(props) {
@@ -15,6 +18,7 @@ class Login extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   googleSignIn() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
@@ -65,29 +69,40 @@ class Login extends Component {
       return <AllCupcakes />;
     }
     return (
-      <div>
-        <p>Login</p>
-        <form onSubmit={this.handleSubmit}>
-          <h3>Enter user name</h3>
-          <input
-            type="text"
-            onChange={this.handleNameChange}
-            value={this.state.username}
-            placeholder="username"
-          />
-          <h3>Enter password</h3>
-          <input
-            type="password"
-            onChange={this.handlePasswordChange}
-            value={this.state.password}
-            placeholder="********"
-          />
-          <input type="submit" />
-        </form>
-        Sign in with Google:
-        <button onClick={this.googleSignIn}>Google!</button>
+      <div className="whiteBox">
         <div>
-          <Link to={"/signup/"}>Don't have an account yet? Sign up!</Link>
+          <img className="logo" src={logo} alt="cupcake-marketplace-logo" />
+        </div>
+        <div>
+          <p className="title">Login</p>
+          <form onSubmit={this.handleSubmit}>
+            <p className="enterInfo">Username</p>
+            <input
+              type="text"
+              onChange={this.handleNameChange}
+              value={this.state.username}
+            />
+            <p className="enterInfo">Password</p>
+            <input
+              type="text"
+              onChange={this.handlePasswordChange}
+              value={this.state.password}
+            />
+            <div>
+              <input className="button" type="submit" value="Login" />
+            </div>
+          </form>
+          <img
+            className="googleSignin"
+            src={googleSignin}
+            onClick={this.googleSignIn}
+            alt="google-signin"
+          />
+          <div>
+            <Link className="signup" to={"/signup/"}>
+              Don't have an account yet? Sign up!
+            </Link>
+          </div>
         </div>
       </div>
     );

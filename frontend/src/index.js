@@ -6,7 +6,7 @@ import { reducer as cupcakeReducer } from "./store/cupcakes/reducer";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
-import firebase from "./loginGoogle.js";
+import firebase from "../../frontend/src/Components/login/loginGoogle.js";
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
