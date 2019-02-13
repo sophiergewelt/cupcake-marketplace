@@ -3,6 +3,16 @@ import { connect } from "react-redux";
 import "../../App.js";
 import "./display-all-cupcakes.css";
 import SingleCupcake from "../single-cupcake";
+import styled from "styled-components";
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 3%;
+  text-align: center;
+  justify-content: center;
+`;
 
 class DisplayAllCupcakes extends Component {
   componentDidMount() {
@@ -31,7 +41,7 @@ class DisplayAllCupcakes extends Component {
     let cupcakes = this.renderAllCupcakes();
     return (
       <div>
-        <div>{cupcakes}</div>
+        <MainContainer>{cupcakes}</MainContainer>
       </div>
     );
   }

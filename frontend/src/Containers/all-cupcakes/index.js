@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import "./all-cupcakes.css";
 import DisplayAllCupcakes from "../../Components/display-all-cupcakes/";
 import Search from "../../search/search";
+import styled from "styled-components";
+
+const MainContainer = styled.div`
+  text-align: -webkit-center;
+`;
 
 class AllCupcakes extends Component {
   render() {
     return (
-      <div>
+      <MainContainer>
         <input
           // placeholder for SellCupcakes class
           type="button"
@@ -20,7 +25,7 @@ class AllCupcakes extends Component {
           <h3>Browse our cupcakes</h3>
           <DisplayAllCupcakes />
         </div>
-      </div>
+      </MainContainer>
     );
   }
 }
