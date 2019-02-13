@@ -5,11 +5,8 @@ import Search from "../../search/search";
 
 class AllCupcakes extends Component {
   render() {
-    let welcomeText = "Welcome *user*";
     return (
       <div>
-        <p>{welcomeText}</p>
-        <p />
         <input
           // placeholder for SellCupcakes class
           type="button"
@@ -20,7 +17,7 @@ class AllCupcakes extends Component {
         <input type="button" value="Cart" onClick={this.shoppingCart} />
         <div className="App">
           <Search />
-          <h1>Browse the cupcakes</h1>
+          <h3>Browse the cupcakes</h3>
           <DisplayAllCupcakes />
         </div>
       </div>
