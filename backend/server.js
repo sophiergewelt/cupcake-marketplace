@@ -1,9 +1,9 @@
-let express = require("express");
-let cors = require("cors");
-let sha256 = require("sha256");
+const express = require("express");
+const cors = require("cors");
+const sha256 = require("sha256");
 const MongoClient = require("mongodb").MongoClient;
-let ObjectID = require("mongodb").ObjectID;
-let bodyParser = require("body-parser");
+const ObjectID = require("mongodb").ObjectID;
+const bodyParser = require("body-parser");
 
 const url = "mongodb://admin:admin123@ds111993.mlab.com:11993/alibay";
 let dbs = undefined;
@@ -116,8 +116,6 @@ app.get("/allcupcakes", (req, res) => {
 
 app.post("/searchcupcakes", (req, res) => {
   let db = dbs.db("alibay");
-  //let unregQuery = req.body.query;
-  //let query = new RegExp(".*" + unregQuery + ".", "i");
   db.collection("cupcakes").createIndex({
     name: "text",
     description: "text",
