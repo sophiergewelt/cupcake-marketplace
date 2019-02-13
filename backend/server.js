@@ -148,6 +148,18 @@ app.post("/searchcupcakes", (req, res) => {
     });
 });
 
+app.post("/getcupcake", (req, res) => {
+  console.log("query getcupkae", req.body.query);
+  let db = dbs.db("alibay");
+  db.collection("cupcakes")
+    .find({ _id: ObjectID(req.body.query) })
+    .toArray((err, result) => {
+      if (err) return res.status(500).send(err);
+      console.log("result", result);
+      res.send(JSON.stringify({ success: true, cupcake: result[0] }));
+    });
+});
+
 app.listen(4000, function() {
   console.log("Server started on port 4000");
 });
