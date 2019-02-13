@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+const StyledForm = styled.form`
+  color: red;
+`;
 
 class Search extends Component {
   constructor(props) {
@@ -49,7 +55,10 @@ class Search extends Component {
             src={`http://localhost:4000/${cupcake.picture}`}
             alt="one-cupcake"
           />
-          <p className="name">{cupcake.name}</p>
+          <p className="name">
+            {cupcake.name}
+            <Link to={"/getcupcake/" + cupcake._id}>{cupcake.name}</Link>
+          </p>
           <p className="category">{cupcake.category}</p>
           <p className="price">{cupcake.price}$/each</p>
           <p className="seller">{cupcake.userID}</p>
@@ -59,7 +68,7 @@ class Search extends Component {
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <StyledForm onSubmit={this.handleSubmit}>
           <div>
             Search our database by user, cupcake description or category!
           </div>
@@ -70,7 +79,7 @@ class Search extends Component {
             placeholder="search our cupcakes!!"
           />
           <input type="submit" value="search for cupcakes!" />
-        </form>
+        </StyledForm>
         <div>
           This was returned from your search:
           {searchResult}

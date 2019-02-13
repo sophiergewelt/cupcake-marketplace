@@ -29,7 +29,11 @@ class DisplayAllCupcakes extends Component {
 
   render() {
     let cupcakes = this.renderAllCupcakes();
-    return <div>{cupcakes}</div>;
+    return (
+      <div>
+        <div>{cupcakes}</div>
+      </div>
+    );
   }
 }
 
