@@ -55,6 +55,18 @@ class AddCupcake extends Component {
     this.setState({ [event.target.name]: event.target.value }); // "[event.target.name]" refers to this name's place from the input name to the state's mentionned key.
   };
 
+  handleFileInputChange = event => {
+    const file = event.target.files[0];
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      this.setState({
+        picture: fileReader.result
+      });
+    };
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
@@ -70,7 +82,7 @@ class AddCupcake extends Component {
         return res.text();
       })
       .then(function(body) {
-        let badBod = JSON.stringify(body);
+        let badBod = JSON.parse(body);
         if (badBod.success === true) {
           alert("Item successfully added");
         } else {
@@ -103,7 +115,7 @@ class AddCupcake extends Component {
               <input
                 type="file"
                 name="picture"
-                onChange={event => this.handleChange(event)}
+                onChange={this.handleFileInputChange}
               />
             </StyledFormItem>
             <StyledFormItem>

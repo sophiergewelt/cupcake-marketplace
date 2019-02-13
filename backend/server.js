@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const sha256 = require("sha256");
+const fs = require("fs");
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
 const bodyParser = require("body-parser");
@@ -15,6 +16,7 @@ MongoClient.connect(url, (err, allDbs) => {
 let app = express();
 app.use(cors());
 app.use(bodyParser.raw({ type: "*/*" }));
+app.use(express.static(__dirname + "/pictures"));
 
 app.use((req, res, next) => {
   try {
@@ -77,18 +79,28 @@ app.post("/login", (req, res) => {
   );
 });
 
+app.get("/images/:name", (req, res) => {});
+
 app.post("/addcupcake", (req, res) => {
   let db = dbs.db("alibay");
+  var base64Data = req.body.picture.replace(/^data:image\/jpeg;base64,/, "");
+  var cupcakeId = new ObjectID();
+  let fileName = `image_${cupcakeId}.jpeg`;
+  let filePath = `${__dirname}/pictures/${fileName}`;
+
+  fs.writeFileSync(filePath, base64Data, "base64");
+
   db.collection("users").findOne(
     { _id: ObjectID(req.body.userId) },
     (err, result) => {
       if (err) return res.status(500).send(err);
       if (result) {
         let newCupcake = {
+          _id: cupcakeId,
           name: req.body.name,
           description: req.body.description,
           category: req.body.category,
-          picture: req.body.picture,
+          picture: fileName,
           price: req.body.price,
           stock: req.body.stock,
           userId: req.body.userId

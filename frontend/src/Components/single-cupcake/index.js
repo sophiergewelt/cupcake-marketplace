@@ -7,7 +7,10 @@ class SingleCupcake extends Component {
   render() {
     return (
       <div className="cupcake">
-        <img src={this.props.cupcake.picture} alt="one-cupcake" />
+        <img
+          src={`http://localhost:4000/${this.props.cupcake.picture}`}
+          alt="one-cupcake"
+        />
         <p className="name">{this.props.cupcake.name}</p>
         <p className="category">{this.props.cupcake.category}</p>
         <p className="price">{this.props.cupcake.price}$/each</p>
