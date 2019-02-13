@@ -45,7 +45,6 @@ const StyledForm = styled.form`
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3),
       0 1px 0 rgba(255, 255, 255, 0.3) inset;
     height: 35px;
-    margin: 0 0 0 10px;
     padding: 0;
     width: 90px;
     cursor: pointer;
@@ -63,10 +62,6 @@ const StyledForm = styled.form`
     background: #f86255;
     outline: none;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
-  }
-
-  #submit::-moz-focus-inner {
-    border: 0; /* Small centering fix for Firefox */
   }
 
   #search::-webkit-input-placeholder {
@@ -108,6 +103,7 @@ class Search extends Component {
 
     let body = JSON.stringify({ query: this.state.query });
     console.log("search body", body);
+    console.log("this.state.query", this.state.query);
 
     fetch("http://178.128.230.45:4000/searchcupcakes", {
       method: "POST",
@@ -148,10 +144,11 @@ class Search extends Component {
 
     return (
       <div>
-        <StyledForm onSubmit={this.handleSubmit} id="searchbox" action="">
+        <StyledForm onSubmit={this.handleSubmit} id="searchbox">
           <input
             id="search"
             type="text"
+            onChange={this.handleSearch}
             placeholder="Search our cupcakes by user, cupcake description or category!"
           />
           <input id="submit" type="submit" value="Search" />
