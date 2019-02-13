@@ -77,7 +77,7 @@ class AddCupcake extends Component {
     /********************************************************************************
     //fetch the backend!
     ********************************************************************************/
-    fetch("http://localhost:4000/addcupcake", {
+    fetch("http://178.128.230.45:4000/addcupcake", {
       method: "POST",
       body: JSON.stringify(this.state)
     })

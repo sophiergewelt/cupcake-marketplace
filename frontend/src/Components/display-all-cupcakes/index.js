@@ -6,7 +6,7 @@ import SingleCupcake from "../single-cupcake";
 
 class DisplayAllCupcakes extends Component {
   componentDidMount() {
-    fetch("http://localhost:4000/allcupcakes", {
+    fetch("http://178.128.230.45:4000/allcupcakes", {
       method: "GET"
     })
       .then(x => {

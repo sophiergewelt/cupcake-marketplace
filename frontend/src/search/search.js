@@ -109,7 +109,7 @@ class Search extends Component {
     let body = JSON.stringify({ query: this.state.query });
     console.log("search body", body);
 
-    fetch("http://localhost:4000/searchcupcakes", {
+    fetch("http://178.128.230.45:4000/searchcupcakes", {
       method: "POST",
       body: body
     })
@@ -132,7 +132,7 @@ class Search extends Component {
         <div className="cupcake">
           This was returned from your search:
           <img
-            src={`http://localhost:4000/${cupcake.picture}`}
+            src={`http://178.128.230.45:4000/${cupcake.picture}`}
             alt="one-cupcake"
           />
           <p className="name">

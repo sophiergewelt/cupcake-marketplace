@@ -1,27 +1,35 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import "./cupcakePage.css";
 import BuyCupcake from "../../Components/buy-cupcake/BuyCupcake.js";
 
 const StyledContainer = styled.div`
   display: flex;
-  border-style: dotted;
-  border-radius: 5%;
+  border-style: solid;
+  border-width: 1px;
+  background: white;
+  border-radius: 2%;
   padding: 5px;
+  width: 1000px;
 `;
 
 const StyledImageContainer = styled.img`
   width: 250px;
   height: 250px;
-  border-radius: 5%;
+  border-radius: 2%;
 `;
 
 const StyledInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 700px;
 `;
 
 const StyledName = styled.div`
+  font-size: 20px;
+`;
+
+const StyledButton = styled.div`
   font-size: 20px;
 `;
 
@@ -46,10 +54,8 @@ class CupcakePage extends Component {
   }
 
   componentDidMount = () => {
-    console.log("before fetch ID", this.props.itemid);
-
     let query = JSON.stringify({ query: this.props.itemid });
-    fetch("http://localhost:4000/getcupcake", {
+    fetch("http://178.128.230.45:4000/getcupcake", {
       method: "POST",
       body: query
     })
@@ -59,7 +65,6 @@ class CupcakePage extends Component {
       .then(data => {
         let body = JSON.parse(data);
         this.setState({ cupcake: body.cupcake });
-        console.log(body);
       })
       .catch(err => console.log(err));
   };
@@ -69,24 +74,24 @@ class CupcakePage extends Component {
       <div>
         <StyledContainer>
           <StyledImageContainer
-            class="img-file"
-            src={`http://localhost:4000/${this.state.cupcake.picture}`}
+            src={`http://178.128.230.45:4000//${this.state.cupcake.picture}`}
           />
           <StyledInfoContainer>
-            <StyledName class="">{this.state.cupcake.name}</StyledName>
+            <StyledName>{this.state.cupcake.name}</StyledName>
             <StyledDescription>
               {this.state.cupcake.description}
             </StyledDescription>
             <StyledPrice>{this.state.cupcake.price}</StyledPrice>
             <StyledStock>{this.state.cupcake.stock}</StyledStock>
+            <StyledButton>
+              <BuyCupcake sentPrice={this.state.cupcake.price} />
+            </StyledButton>
           </StyledInfoContainer>
         </StyledContainer>
-        <BuyCupcake class="buy-btn" sentPrice={this.state.cupcake.price} />
       </div>
     );
   };
   render() {
-    console.log("Cupstate", this.state);
     return (
       <div>
         {this.state.cupcake === undefined

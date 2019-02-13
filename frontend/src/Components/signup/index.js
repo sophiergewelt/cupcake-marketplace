@@ -55,7 +55,7 @@ class Signup extends Component {
       });
       console.log("body", body);
 
-      fetch("http://localhost:4000/signup", {
+      fetch("http://178.128.230.45:4000/signup", {
         method: "POST",
         body: body
       })

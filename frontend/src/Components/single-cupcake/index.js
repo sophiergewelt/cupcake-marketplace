@@ -53,6 +53,7 @@ const StyledStock = styled.div`
 class SingleCupcake extends Component {
   render() {
     return (
+<<<<<<< Updated upstream
       <MainContainer>
         <StyledContainer>
           <StyledImageContainer
@@ -76,6 +77,22 @@ class SingleCupcake extends Component {
           </StyledInfoContainer>
         </StyledContainer>
       </MainContainer>
+=======
+      <div className="cupcake">
+        <img
+          src={`http://178.128.230.45:4000/${this.props.cupcake.picture}`}
+          alt="one-cupcake"
+        />
+        <p className="name">
+          <Link to={"/getcupcake/" + this.props.cupcake._id}>
+            {this.props.cupcake.name}
+          </Link>
+        </p>
+        <p className="category">{this.props.cupcake.category}</p>
+        <p className="price">{this.props.cupcake.price}$/each</p>
+        <p className="seller">{this.props.cupcake.userID}</p>
+      </div>
+>>>>>>> Stashed changes
     );
   }
 }
