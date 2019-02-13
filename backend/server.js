@@ -1,9 +1,10 @@
-let express = require("express");
-let cors = require("cors");
-let sha256 = require("sha256");
+const express = require("express");
+const cors = require("cors");
+const sha256 = require("sha256");
+const fs = require("fs");
 const MongoClient = require("mongodb").MongoClient;
-let ObjectID = require("mongodb").ObjectID;
-let bodyParser = require("body-parser");
+const ObjectID = require("mongodb").ObjectID;
+const bodyParser = require("body-parser");
 
 const url = "mongodb://admin:admin123@ds111993.mlab.com:11993/alibay";
 let dbs = undefined;
@@ -15,6 +16,7 @@ MongoClient.connect(url, (err, allDbs) => {
 let app = express();
 app.use(cors());
 app.use(bodyParser.raw({ type: "*/*" }));
+app.use(express.static(__dirname + "/pictures"));
 
 app.use((req, res, next) => {
   try {
@@ -77,18 +79,35 @@ app.post("/login", (req, res) => {
   );
 });
 
+app.get("/images/:name", (req, res) => {});
+
 app.post("/addcupcake", (req, res) => {
   let db = dbs.db("alibay");
+
+  const fileType = req.body.pictureType;
+  const extension = fileType.substring(
+    fileType.indexOf("/") + 1,
+    fileType.length
+  );
+  let replaceBase64 = new RegExp(`^data:image\/${extension};base64,`);
+  var base64Data = req.body.picture.replace(replaceBase64, "");
+  var cupcakeId = new ObjectID();
+  let fileName = `image_${cupcakeId}.${extension}`;
+  let filePath = `${__dirname}/pictures/${fileName}`;
+
+  fs.writeFileSync(filePath, base64Data, "base64");
+
   db.collection("users").findOne(
     { _id: ObjectID(req.body.userId) },
     (err, result) => {
       if (err) return res.status(500).send(err);
       if (result) {
         let newCupcake = {
+          _id: cupcakeId,
           name: req.body.name,
           description: req.body.description,
           category: req.body.category,
-          picture: req.body.picture,
+          picture: fileName,
           price: req.body.price,
           stock: req.body.stock,
           userId: req.body.userId
@@ -116,8 +135,6 @@ app.get("/allcupcakes", (req, res) => {
 
 app.post("/searchcupcakes", (req, res) => {
   let db = dbs.db("alibay");
-  //let unregQuery = req.body.query;
-  //let query = new RegExp(".*" + unregQuery + ".", "i");
   db.collection("cupcakes").createIndex({
     name: "text",
     description: "text",

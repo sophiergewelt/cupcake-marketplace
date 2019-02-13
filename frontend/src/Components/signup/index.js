@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Login from "../../Components/login";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import AllCupcakes from "../../Containers/all-cupcakes";
 
 class Signup extends Component {
   constructor(props) {
@@ -17,10 +19,8 @@ class Signup extends Component {
       this
     );
     this.handleCityChange = this.handleCityChange.bind(this);
-    this.loginfunc = this.loginfunc.bind(this);
   }
 
-  // the event is what you get when a key is entered in the field in the form
   handleNameChange(event) {
     console.log("new username", event.target.value);
     this.setState({ username: event.target.value });
@@ -73,17 +73,17 @@ class Signup extends Component {
 
       this.setState({ username: "", password: "", confirmPassword: "" });
       console.log("I'm sending to the server: ", body);
+      this.props.dispatch({ type: "login-success" });
     } else {
       console.log("wrong password gunzo!!!");
       alert("Passwords do not match");
     }
   }
 
-  loginfunc() {
-    return Login;
-  }
-
   render() {
+    if (this.props.loginStatus) {
+      return <AllCupcakes />;
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -98,41 +98,22 @@ class Signup extends Component {
             type="text"
             onChange={this.handleNameChange}
             value={this.state.username}
+            placeholder="username"
           />
           <h3>Enter password</h3>
           <input
             type="password"
             onChange={this.handlePasswordChange}
             value={this.state.password}
+            placeholder="********"
           />
           <h3>Confirm password</h3>
           <input
             type="password"
             onChange={this.handlePasswordChangeConfirm}
             value={this.state.confirmPassword}
+            placeholder="********"
           />
-          {/* <div>
-            <label>
-              password :
-              <input
-                name="password"
-                id="password"
-                type="password"
-                onkeyup="handlePasswordChange();"
-              />
-            </label>
-            <br />
-            <label>
-              confirm password:
-              <input
-                type="password"
-                name="confirm_password"
-                id="confirm_password"
-                onkeyup="handlePasswordChange();"
-              />
-              <span id="message" />
-            </label>
-          </div> */}
 
           <div>
             Please select city:
@@ -145,10 +126,12 @@ class Signup extends Component {
             <input type="submit" value="send" />
           </div>
         </form>
-        <button onClick={this.loginfunc()}>Take me back to login</button>
+        <Link to={"/"}>Take me back to login</Link>
       </div>
     );
   }
 }
 
-export default Signup;
+export default connect(function(state) {
+  return { loginStatus: state.loggedIn };
+})(Signup);

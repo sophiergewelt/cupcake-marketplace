@@ -4,6 +4,8 @@ let reducer = function(state, action) {
       return { ...state, cupcakes: action.cupcakes };
     case "login-success":
       return { ...state, loggedIn: true };
+    case "logout-success":
+      return { ...state, loggedIn: false };
     default:
       return state;
   }

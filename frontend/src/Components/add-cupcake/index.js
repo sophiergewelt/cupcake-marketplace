@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { connect, Provider } from "react-redux";
-import { createStore } from "redux";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
@@ -46,6 +44,7 @@ class AddCupcake extends Component {
       description: "",
       category: "",
       picture: "",
+      pictureType: "",
       price: "",
       stock: "",
       userId: "5c6212743387a254e11b0d81"
@@ -55,6 +54,20 @@ class AddCupcake extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value }); // "[event.target.name]" refers to this name's place from the input name to the state's mentionned key.
+  };
+
+  handleFileInputChange = event => {
+    const file = event.target.files[0];
+    console.log(file);
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      this.setState({
+        picture: fileReader.result,
+        pictureType: file.type
+      });
+      debugger;
+    };
   };
 
   handleSubmit = event => {
@@ -72,7 +85,7 @@ class AddCupcake extends Component {
         return res.text();
       })
       .then(function(body) {
-        let badBod = JSON.stringify(body);
+        let badBod = JSON.parse(body);
         if (badBod.success === true) {
           alert("Item successfully added");
         } else {
@@ -89,7 +102,7 @@ class AddCupcake extends Component {
         <div id="addacupcake_form_div">
           <StyledForm>
             <StyledFormItem>
-              <label for="name">Cupcake's wonderful name:</label>
+              <label for="name">Cupcake's wonderful name (max 100 KB):</label>
               <input
                 type="text"
                 name="name"
@@ -105,7 +118,7 @@ class AddCupcake extends Component {
               <input
                 type="file"
                 name="picture"
-                onChange={event => this.handleChange(event)}
+                onChange={this.handleFileInputChange}
               />
             </StyledFormItem>
             <StyledFormItem>

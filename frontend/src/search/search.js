@@ -1,9 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Homepage from "./Containers/homepage/";
 import React, { Component } from "react";
-import { Route, BrowserRouter } from "react-router-dom";
-import SingleCupcake from "../single-cupcake";
 
 class Search extends Component {
   constructor(props) {
@@ -13,7 +8,7 @@ class Search extends Component {
       receivedSearch: ""
     };
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSearch(event) {
@@ -26,7 +21,7 @@ class Search extends Component {
 
     console.log("we are at handle submit SEARCH");
 
-    let body = JSON.stringify({query = this.state.query});
+    let body = JSON.stringify({ query: this.state.query });
     console.log("search body", body);
 
     fetch("http://localhost:4000/searchcupcakes", {
@@ -46,24 +41,26 @@ class Search extends Component {
 
   render() {
     return (
-        <div>
-            <form onSubmit={this.handleSubmit}>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>
             Search our database by user, cupcake description or category!
-            <input
-                type="text"
-                onChange={this.handleSearch}
-                value={this.state.username}
-            />
-            <input type="submit" value="search for cupcakes!" />
-            </form>
-            <div>
-                This was returned from your search:
-                {this.state.receivedSearch}
-            </div>    
-
+          </div>
+          <input
+            type="text"
+            onChange={this.handleSearch}
+            value={this.state.username}
+            placeholder="search our cupcakes!!"
+          />
+          <input type="submit" value="search for cupcakes!" />
+        </form>
+        <div>
+          This was returned from your search:
+          {this.state.receivedSearch}
         </div>
+      </div>
     );
   }
 }
 
-export default search;
+export default Search;

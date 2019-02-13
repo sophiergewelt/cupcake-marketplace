@@ -10,11 +10,31 @@ import firebase from "./loginGoogle.js";
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    store.dispatch({ type: "logginStatus", status: true });
+    console.log("firebase autentification sucessfull");
+    console.log("fuser:", user);
+    let requestBody = JSON.stringify({
+      username: user.displayName,
+      password: "",
+      location: "MONTREAL"
+    });
+
+    fetch("http://localhost:4000/login", {
+      method: "POST",
+      body: requestBody
+    })
+      .then(function(x) {
+        return x.text();
+      })
+      .then(responseBody => {
+        // when we receive the body, run this function
+        console.log("responseBody from login", responseBody);
+        let body = JSON.parse(responseBody);
+        console.log("parsed responseBody from login", body);
+      });
+    store.dispatch({ type: "login-success", status: true });
   } else {
-    store.dispatch({ type: "logginStatus", status: false });
+    store.dispatch({ type: "login-failed", status: false });
   }
-  // console.log(status);
 });
 
 const store = createStore(

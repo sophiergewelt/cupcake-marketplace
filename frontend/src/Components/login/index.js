@@ -1,5 +1,8 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
+import AllCupcakes from "../../Containers/all-cupcakes";
+import { Link } from "react-router-dom";
+import firebase from "../../loginGoogle.js";
 
 class Login extends Component {
   constructor(props) {
@@ -12,6 +15,11 @@ class Login extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  googleSignIn() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  }
+
   handleNameChange(event) {
     this.setState({ username: event.target.value });
     //console.log("username", username);
@@ -30,8 +38,7 @@ class Login extends Component {
     });
     fetch("http://localhost:4000/login", {
       method: "POST",
-      body: requestBody,
-      credentials: "include"
+      body: requestBody
     })
       .then(function(x) {
         return x.text(); // should be called x.getResponseBody()
@@ -42,7 +49,7 @@ class Login extends Component {
         let body = JSON.parse(responseBody);
         console.log("parsed responseBody from login", body);
         if (!body.success) {
-          alert("login failled");
+          alert("login failed");
           return;
         }
         this.props.dispatch({
@@ -54,27 +61,39 @@ class Login extends Component {
   }
 
   render() {
-    //this is the form. used the standard sheet received from Jack
+    if (this.props.loginStatus) {
+      return <AllCupcakes />;
+    }
     return (
       <div>
+        <p>Login</p>
         <form onSubmit={this.handleSubmit}>
           <h3>Enter user name</h3>
           <input
             type="text"
             onChange={this.handleNameChange}
             value={this.state.username}
+            placeholder="username"
           />
           <h3>Enter password</h3>
           <input
-            type="text"
+            type="password"
             onChange={this.handlePasswordChange}
             value={this.state.password}
+            placeholder="********"
           />
           <input type="submit" />
         </form>
+        Sign in with Google:
+        <button onClick={this.googleSignIn}>Google!</button>
+        <div>
+          <Link to={"/signup/"}>Don't have an account yet? Sign up!</Link>
+        </div>
       </div>
     );
   }
 }
 
-export default connect()(Login);
+export default connect(function(state) {
+  return { loginStatus: state.loggedIn };
+})(Login);
