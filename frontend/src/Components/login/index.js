@@ -81,12 +81,14 @@ class Login extends Component {
               type="text"
               onChange={this.handleNameChange}
               value={this.state.username}
+              placeholder="username"
             />
             <p className="enterInfo">Password</p>
             <input
-              type="text"
+              type="password"
               onChange={this.handlePasswordChange}
               value={this.state.password}
+              placeholder="********"
             />
             <div>
               <input className="button" type="submit" value="Login" />

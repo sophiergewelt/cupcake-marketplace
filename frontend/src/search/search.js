@@ -5,7 +5,7 @@ class Search extends Component {
     super(props);
     this.state = {
       query: "",
-      receivedSearch: ""
+      receivedSearch: []
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,15 +31,32 @@ class Search extends Component {
       .then(function(res) {
         return res.text();
       })
-      .then(function(body) {
+      .then(body => {
         let resBody = JSON.parse(body);
-        this.setState({ receivedSearch: resBody });
+        // debugger;
+        this.setState({ receivedSearch: resBody.cupcakes });
+        console.log("resBody", resBody);
       });
 
     console.log("I'm sending to the server for search: ", body);
   }
 
   render() {
+    let searchResult = this.state.receivedSearch.map(cupcake => {
+      return (
+        <div className="cupcake">
+          <img
+            src={`http://localhost:4000/${cupcake.picture}`}
+            alt="one-cupcake"
+          />
+          <p className="name">{cupcake.name}</p>
+          <p className="category">{cupcake.category}</p>
+          <p className="price">{cupcake.price}$/each</p>
+          <p className="seller">{cupcake.userID}</p>
+        </div>
+      );
+    });
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -56,7 +73,7 @@ class Search extends Component {
         </form>
         <div>
           This was returned from your search:
-          {this.state.receivedSearch}
+          {searchResult}
         </div>
       </div>
     );
