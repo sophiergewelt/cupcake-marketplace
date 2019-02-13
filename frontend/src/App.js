@@ -42,6 +42,9 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
+            <header className="banner">
+              <img className="banner-logo" src="/banner.png" alt="banner" />
+            </header>
             <Route
               exact={true}
               path="/all-cupcakes"

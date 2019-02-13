@@ -1,28 +1,31 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
 
 .logo {
-  width: 300px;
-  height: 300px;
-  margin: 15px;
+  width: 310px;
+  height: 310px;
+  margin-top: 33px;
+  margin-left: 13px;
 }
 
-.whiteBox {
-  background-color: #ffffff;
+.whiteBoxLogin {
+  background-color: rgba(255, 255, 255);
   text-align: center;
   border: 1px solid #000000;
   border-radius: 5px;
   padding: 20px;
   display: flex;
+  margin-top: 43px;
   flex-direction: initial;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Noto Sans", "sans-serif";
 }
 
-.title {
+.titleLogin {
   font-size: 40px;
 }
 
-.enterInfo {
+.enterInfoLogin {
   font-size: 20px;
+  margin: 8px;
 }
 
 .signup {
@@ -32,4 +35,27 @@
 .googleSignin {
   margin-top: 15px;
   margin-bottom: 10px;
+}
+
+.welcomeTitleLogin {
+  font-size: 40px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin-top: 85px;
+  margin-bottom: 5px;
+}
+
+.buttonLogin {
+  width: 180px;
+  height: 51px !important;
+  font-size: 22px;
+  -webkit-appearance: none;
+  margin-top: 25px;
+  background-color: #ffcacb;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
+
+.loginDiv {
+  text-align: -webkit-center;
 }

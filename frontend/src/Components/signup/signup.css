@@ -1,0 +1,44 @@
+.whiteBoxSignup {
+  background-color: rgba(255, 255, 255);
+  text-align: center;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: initial;
+  font-family: "Noto Sans", "sans-serif";
+  width: 600px;
+  margin-top: 80px;
+}
+
+.titleSignup {
+  font-size: 40px;
+  margin-top: 5px;
+}
+
+.welcomeTextSignup {
+  font-size: 22px;
+}
+
+.enterInfoSignup {
+  font-size: 20px;
+  margin-bottom: -6px;
+  margin-top: 22px;
+}
+
+.loginOnSignupPage {
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.buttonSignup {
+  width: 180px;
+  height: 51px !important;
+  font-size: 22px;
+  -webkit-appearance: none;
+  margin-top: 25px;
+  background-color: #ffcacb;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  margin-bottom: 15px;
+}

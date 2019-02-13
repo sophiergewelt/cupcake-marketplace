@@ -69,41 +69,44 @@ class Login extends Component {
       return <AllCupcakes />;
     }
     return (
-      <div className="whiteBox">
-        <div>
-          <img className="logo" src={logo} alt="cupcake-marketplace-logo" />
-        </div>
-        <div>
-          <p className="title">Login</p>
-          <form onSubmit={this.handleSubmit}>
-            <p className="enterInfo">Username</p>
-            <input
-              type="text"
-              onChange={this.handleNameChange}
-              value={this.state.username}
-              placeholder="username"
-            />
-            <p className="enterInfo">Password</p>
-            <input
-              type="password"
-              onChange={this.handlePasswordChange}
-              value={this.state.password}
-              placeholder="********"
+      <div className="loginDiv">
+        <p className="welcomeTitleLogin">Welcome to the Cupcake Marketplace!</p>
+        <div className="whiteBoxLogin">
+          <div>
+            <img className="logo" src={logo} alt="cupcake-marketplace-logo" />
+          </div>
+          <div>
+            <p className="titleLogin">Login</p>
+            <form onSubmit={this.handleSubmit}>
+              <p className="enterInfo">Username</p>
+              <input
+                type="text"
+                onChange={this.handleNameChange}
+                value={this.state.username}
+                placeholder="username"
+              />
+              <p className="enterInfoLogin">Password</p>
+              <input
+                type="password"
+                onChange={this.handlePasswordChange}
+                value={this.state.password}
+                placeholder="********"
+              />
+              <div>
+                <input className="buttonLogin" type="submit" value="Login" />
+              </div>
+            </form>
+            <img
+              className="googleSignin"
+              src={googleSignin}
+              onClick={this.googleSignIn}
+              alt="google-signin"
             />
             <div>
-              <input className="button" type="submit" value="Login" />
+              <Link className="signup" to={"/signup/"}>
+                Don't have an account yet? Sign up!
+              </Link>
             </div>
-          </form>
-          <img
-            className="googleSignin"
-            src={googleSignin}
-            onClick={this.googleSignIn}
-            alt="google-signin"
-          />
-          <div>
-            <Link className="signup" to={"/signup/"}>
-              Don't have an account yet? Sign up!
-            </Link>
           </div>
         </div>
       </div>

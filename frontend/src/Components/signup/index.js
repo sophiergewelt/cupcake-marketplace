@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import AllCupcakes from "../../Containers/all-cupcakes";
+import "./signup.css";
 
 class Signup extends Component {
   constructor(props) {
@@ -85,29 +86,30 @@ class Signup extends Component {
       return <AllCupcakes />;
     }
     return (
-      <div>
+      <div className="whiteBoxSignup">
         <form onSubmit={this.handleSubmit}>
-          <h2>Sign up!</h2>
+          <p className="titleSignup">Create a New Account</p>
           <div>
-            Welcome to The Cupcake Market! Please fill in your information and
-            you will soon be on your way to browse our fantastic collection of
-            cupcakes!
+            <p className="welcomeTextSignup">
+              Please fill in your information and you will be on your way to
+              browse our fantastic collection of cupcakes!
+            </p>
           </div>
-          <h3>Enter user name</h3>
+          <p className="enterInfoSignup">Username</p>
           <input
             type="text"
             onChange={this.handleNameChange}
             value={this.state.username}
             placeholder="username"
           />
-          <h3>Enter password</h3>
+          <p className="enterInfoSignup">Password</p>
           <input
             type="password"
             onChange={this.handlePasswordChange}
             value={this.state.password}
             placeholder="********"
           />
-          <h3>Confirm password</h3>
+          <p className="enterInfoSignup">Confirm password</p>
           <input
             type="password"
             onChange={this.handlePasswordChangeConfirm}
@@ -116,17 +118,21 @@ class Signup extends Component {
           />
 
           <div>
-            Please select city:
+            <p className="enterInfoSignup">Please select city:</p>
             <select name="categories">
               <option value="MONTREAL">MONTREAL</option>
               <option value="LAVAL">LAVAL</option>
               <option value="SOUTH SHORE">SOUTH SHORE</option>
               <option value="TIMBUKTU">TIMBUKTU</option>
             </select>
-            <input type="submit" value="send" />
+            <div>
+              <input className="buttonSignup" type="submit" value="Sign up" />
+            </div>
+            <Link className="loginOnSignupPage" to={"/"}>
+              Take me back to login
+            </Link>
           </div>
         </form>
-        <Link to={"/"}>Take me back to login</Link>
       </div>
     );
   }
