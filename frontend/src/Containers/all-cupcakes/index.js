@@ -17,7 +17,7 @@ class AllCupcakes extends Component {
         <input type="button" value="Cart" onClick={this.shoppingCart} />
         <div className="App">
           <Search />
-          <h3>Browse the cupcakes</h3>
+          <h3>Browse our cupcakes</h3>
           <DisplayAllCupcakes />
         </div>
       </div>

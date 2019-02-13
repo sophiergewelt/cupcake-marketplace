@@ -130,6 +130,7 @@ class Search extends Component {
     let searchResult = this.state.receivedSearch.map(cupcake => {
       return (
         <div className="cupcake">
+          This was returned from your search:
           <img
             src={`http://localhost:4000/${cupcake.picture}`}
             alt="one-cupcake"
@@ -156,10 +157,7 @@ class Search extends Component {
           <input id="submit" type="submit" value="Search" />
         </StyledForm>
 
-        <div>
-          This was returned from your search:
-          {searchResult}
-        </div>
+        <div>{searchResult}</div>
       </div>
     );
   }
