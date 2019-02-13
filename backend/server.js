@@ -5,6 +5,7 @@ const fs = require("fs");
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
 const bodyParser = require("body-parser");
+const stripe = require("stripe")("sk_test_ARpzQb6KqDa2TWVSTSlh9SQf");
 
 const url = "mongodb://admin:admin123@ds111993.mlab.com:11993/alibay";
 let dbs = undefined;
@@ -149,15 +150,28 @@ app.post("/searchcupcakes", (req, res) => {
 });
 
 app.post("/getcupcake", (req, res) => {
-  console.log("query getcupkae", req.body.query);
   let db = dbs.db("alibay");
   db.collection("cupcakes")
     .find({ _id: ObjectID(req.body.query) })
     .toArray((err, result) => {
       if (err) return res.status(500).send(err);
-      console.log("result", result);
       res.send(JSON.stringify({ success: true, cupcake: result[0] }));
     });
+});
+
+app.post("/save-stripe-token", (req, res) => {
+  stripe.charges.create(
+    {
+      amount: req.body.price,
+      currency: "cad",
+      source: "tok_ca", // obtained with Stripe.js
+      description: `You've been charged`
+    },
+    (err, charge) => {
+      if (err) res.status(500).send(err);
+      res.send(JSON.stringify(charge));
+    }
+  );
 });
 
 app.listen(4000, function() {
