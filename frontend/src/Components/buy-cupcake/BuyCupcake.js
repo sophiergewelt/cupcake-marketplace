@@ -1,39 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../../App.js";
-import "./display-all-cupcakes.css";
-import SingleCupcake from "../single-cupcake";
+import StripeCheckout from "react-stripe-checkout";
 
-class CupcakeInfo extends Component {
-  componentDidMount() {
-    fetch("http://localhost:4000/cupcakeinfo", {
-      //renvoie en response les info du cupcake selected
-      method: "GET"
-    })
-      .then(x => {
-        return x.json();
-      })
-      .then();
-  }
+class BuyCupcake extends Component {
+  onToken = token => {
+    fetch("/save-stripe-token", {
+      method: "POST",
+      body: JSON.stringify({ token: token, price: this.props.sentPrice })
+    }).then(response => {
+      response.json().then(data => {
+        alert(`We are in business, ${data.email}`);
+      });
+    });
+  };
 
-  //logique pour pogner le cupcake cliquer(.find avec le this.props.cupcake)
+  // ...
 
   render() {
     return (
-      <div>
-        <div>
-          <div>{/* img */}</div>
-          <div>{/*video description */}</div>
-        </div>
-        <div>
-          <button />
-          <button />
-        </div>
-      </div>
+      // ...
+      <StripeCheckout
+        token={this.onToken}
+        stripeKey="pk_test_GfHQE4nTTSnNs1cct2CvRMgi"
+      />
     );
   }
 }
 
-export default connect(function(state) {
-  return { cupcakes: state.cupcakes };
-})(DisplayAllCupcakes);
+export default BuyCupcake;
