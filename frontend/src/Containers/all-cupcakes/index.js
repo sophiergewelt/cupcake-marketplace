@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./all-cupcakes.css";
 import DisplayAllCupcakes from "../../Components/display-all-cupcakes/";
+import Search from "../../search/Search";
 
 class AllCupcakes extends Component {
   render() {
@@ -15,9 +16,10 @@ class AllCupcakes extends Component {
           value="Sell cupcakes"
           onClick={this.sellCupcakes}
         />
-        {/* placeholger for Cart */}
+        {/* placeholder for Cart */}
         <input type="button" value="Cart" onClick={this.shoppingCart} />
         <div className="App">
+          <Search />
           <h1>Browse the cupcakes</h1>
           <DisplayAllCupcakes />
         </div>
