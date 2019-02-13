@@ -44,6 +44,7 @@ class AddCupcake extends Component {
       description: "",
       category: "",
       picture: "",
+      pictureType: "",
       price: "",
       stock: "",
       userId: "5c6212743387a254e11b0d81"
@@ -57,13 +58,15 @@ class AddCupcake extends Component {
 
   handleFileInputChange = event => {
     const file = event.target.files[0];
-
+    console.log(file);
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = () => {
       this.setState({
-        picture: fileReader.result
+        picture: fileReader.result,
+        pictureType: file.type
       });
+      debugger;
     };
   };
 
@@ -99,7 +102,7 @@ class AddCupcake extends Component {
         <div id="addacupcake_form_div">
           <StyledForm>
             <StyledFormItem>
-              <label for="name">Cupcake's wonderful name:</label>
+              <label for="name">Cupcake's wonderful name (max 100 KB):</label>
               <input
                 type="text"
                 name="name"

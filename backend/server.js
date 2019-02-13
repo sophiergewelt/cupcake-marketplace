@@ -83,9 +83,16 @@ app.get("/images/:name", (req, res) => {});
 
 app.post("/addcupcake", (req, res) => {
   let db = dbs.db("alibay");
-  var base64Data = req.body.picture.replace(/^data:image\/jpeg;base64,/, "");
+
+  const fileType = req.body.pictureType;
+  const extension = fileType.substring(
+    fileType.indexOf("/") + 1,
+    fileType.length
+  );
+  let replaceBase64 = new RegExp(`^data:image\/${extension};base64,`);
+  var base64Data = req.body.picture.replace(replaceBase64, "");
   var cupcakeId = new ObjectID();
-  let fileName = `image_${cupcakeId}.jpeg`;
+  let fileName = `image_${cupcakeId}.${extension}`;
   let filePath = `${__dirname}/pictures/${fileName}`;
 
   fs.writeFileSync(filePath, base64Data, "base64");
