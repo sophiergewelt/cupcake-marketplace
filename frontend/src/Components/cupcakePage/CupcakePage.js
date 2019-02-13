@@ -5,44 +5,53 @@ import BuyCupcake from "../../Components/buy-cupcake/BuyCupcake.js";
 
 const StyledContainer = styled.div`
   display: flex;
-  border-style: solid;
-  border-width: 1px;
-  background: white;
-  border-radius: 2%;
+  justify-content: space-around;
   padding: 5px;
+  height: 400px;
   width: 1000px;
+  color: #2e2e2e;
 `;
 
 const StyledImageContainer = styled.img`
-  width: 250px;
-  height: 250px;
-  border-radius: 2%;
+  width: 350px;
+  border-radius: 2% 0% 0% 2%;
+  border-style: solid;
+  border-color: #fcedef;
+  border-width: 1px;
 `;
 
 const StyledInfoContainer = styled.div`
   display: flex;
+  align-items: left;
+  justify-content: center;
   flex-direction: column;
+  padding: 50px;
+  background: #fcedef;
+  border-radius: 0% 2% 2% 0%;
   width: 700px;
 `;
 
-const StyledName = styled.div`
-  font-size: 20px;
+const StyledH1 = styled.h1`
+  font-size: 25px;
+  color: #df3b57;
 `;
 
-const StyledButton = styled.div`
+const StyledH2 = styled.h2`
   font-size: 20px;
+  border-style: none none solid none;
+  border-width: 0.5px;
+  border-color: #df3b57;
+  width: 100%;
 `;
 
 const StyledDescription = styled.div`
   font-size: 20px;
+  margin-bottom: 25px;
 `;
 
-const StyledPrice = styled.div`
+const StyledPriceAndStock = styled.div`
   font-size: 20px;
-`;
-
-const StyledStock = styled.div`
-  font-size: 20px;
+  margin-bottom: 25px;
 `;
 
 class CupcakePage extends Component {
@@ -77,15 +86,18 @@ class CupcakePage extends Component {
             src={`http://178.128.230.45:4000//${this.state.cupcake.picture}`}
           />
           <StyledInfoContainer>
-            <StyledName>{this.state.cupcake.name}</StyledName>
+            <StyledH1>{this.state.cupcake.name}</StyledH1>
+            <StyledH2>Description</StyledH2>
             <StyledDescription>
               {this.state.cupcake.description}
             </StyledDescription>
-            <StyledPrice>{this.state.cupcake.price}</StyledPrice>
-            <StyledStock>{this.state.cupcake.stock}</StyledStock>
-            <StyledButton>
+            <StyledPriceAndStock>
+              <div>Price: {this.state.cupcake.price} $</div>
+              <div>Quantity: {this.state.cupcake.stock}</div>
+            </StyledPriceAndStock>
+            <div>
               <BuyCupcake sentPrice={this.state.cupcake.price} />
-            </StyledButton>
+            </div>
           </StyledInfoContainer>
         </StyledContainer>
       </div>

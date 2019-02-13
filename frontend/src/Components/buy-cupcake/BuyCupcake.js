@@ -8,7 +8,6 @@ class BuyCupcake extends Component {
       method: "POST",
       body: JSON.stringify({ token: token, price: this.props.sentPrice * 100 })
     }).then(response => {
-      debugger;
       response.json().then(data => {
         alert(`Payment successful. Your cupcake is on the way!`);
       });
