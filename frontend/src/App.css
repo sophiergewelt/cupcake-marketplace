@@ -12,6 +12,8 @@
 
 body {
   background-image: url("./images/pinkpolkadot.png");
+  /* background-repeat: no-repeat; */
+  background-attachment: fixed;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

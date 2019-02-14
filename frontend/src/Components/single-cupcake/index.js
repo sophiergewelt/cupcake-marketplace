@@ -44,9 +44,11 @@ const StyledName = styled.div`
   border-style: none none solid none;
   border-width: 0.5px;
   border-color: #df3b57;
+  padding-bottom: 10px;
 `;
 
 const StyledCategory = styled.div`
+  margin-top: 10px;
   text-decoration: none;
   font-size: 20px;
 `;
