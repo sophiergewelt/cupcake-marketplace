@@ -44,7 +44,9 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <header className="banner">
-              <img className="banner-logo" src="/banner.png" alt="banner" />
+              <a href="http://localhost:3000/all-cupcakes">
+                <img className="banner-logo" src="/banner.png" alt="banner" />
+              </a>
               <Search />
             </header>
 
