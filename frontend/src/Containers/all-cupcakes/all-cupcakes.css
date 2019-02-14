@@ -1,0 +1,24 @@
+.button {
+  width: 180px;
+  height: 51px !important;
+  font-size: 22px;
+  -webkit-appearance: none;
+  margin-top: 25px;
+  background-color: #ffcacb;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
+
+.sell-btn {
+}
+
+.top-of-cupcake {
+  margin-top: 5%;
+  justify-content: space-between;
+  display: flex;
+  padding-left: 15%;
+  padding-right: 14%;
+}
+/* .title {
+  margin-left: 3%;
+} */

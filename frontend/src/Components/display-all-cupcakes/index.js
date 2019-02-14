@@ -9,6 +9,7 @@ const MainContainer = styled.div`
   flex-wrap: wrap;
   width: 95%;
   margin: 3%;
+  margin-top: -1.5%;
   text-align: center;
   justify-content: center;
 `;

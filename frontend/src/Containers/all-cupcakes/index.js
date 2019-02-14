@@ -8,24 +8,22 @@ const MainContainer = styled.div`
 `;
 
 class AllCupcakes extends Component {
-  sellCupcakes = () => {
-    location.href = "/sell";
-    // to = /sell
-  };
-
   render() {
     return (
       <MainContainer>
-        <input
-          // placeholder for SellCupcakes class
-          type="button"
-          value="Sell cupcakes"
-          onClick={this.sellCupcakes}
-        />
-        {/* placeholder for Cart */}
-        <input type="button" value="Cart" onClick={this.shoppingCart} />
         <div className="App">
-          <h3>Browse the cupcakes</h3>
+          <div class="top-of-cupcake">
+            <h3 className="title">Browse the cupcakes</h3>
+
+            <a href="http://localhost:3000/sell" class="sell-btn">
+              <input
+                // placeholder for SellCupcakes class
+                type="button"
+                className="button"
+                value="Sell cupcakes"
+              />
+            </a>
+          </div>
           <DisplayAllCupcakes />
           <Logout />
         </div>
