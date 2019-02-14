@@ -59,11 +59,11 @@ class AddCupcake extends Component {
     this.setState({ [event.target.name]: event.target.value }); // "[event.target.name]" refers to this name's place from the input name to the state's mentionned key.
   };
 
-  // handleBlur(e) {
-  //   var num = parseFloat(this.state.price);
-  //   var cleanNum = num.toFixed(2);
-  //   this.setState({ value: cleanNum });
-  // }
+  handlePriceChange = event => {
+    let firstPrice = parseFloat(event.target.value).toFixed(2);
+    // let fixedPrice = firstPrice.parseFloat().toFixed(2);
+    this.setState({ price: firstPrice });
+  };
 
   handleFileInputChange = event => {
     const file = event.target.files[0];
@@ -104,6 +104,7 @@ class AddCupcake extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <div id="addacupcake_form_div">
@@ -140,7 +141,7 @@ class AddCupcake extends Component {
                 min="0"
                 max="999"
                 placeholder="0"
-                onChange={event => this.handleChange(event)}
+                onChange={event => this.handlePriceChange(event)}
               />
             </StyledFormItem>
             <StyledFormItem>

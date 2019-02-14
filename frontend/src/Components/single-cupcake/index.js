@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
   display: flex;
   border-style: solid;
   border-width: 3px;
-  border-radius: 5%;
+  border-radius: 2%;
   border-color: #f97468;
   padding: 5px;
   width: 400;
@@ -26,7 +26,7 @@ const StyledContainer = styled.div`
 const StyledImageContainer = styled.img`
   width: 250px;
   height: 250px;
-  border-radius: 5%;
+  border-radius: 2%;
 `;
 
 const StyledInfoContainer = styled.div`
@@ -35,11 +35,15 @@ const StyledInfoContainer = styled.div`
   width: 325px;
   font-size: 20px;
   text-align: left;
+  padding: 5%;
 `;
 
 const StyledName = styled.div`
-  font-size: 35px;
+  font-size: 25px;
   text-decoration: none;
+  border-style: none none solid none;
+  border-width: 0.5px;
+  border-color: #df3b57;
 `;
 
 const StyledCategory = styled.div`
