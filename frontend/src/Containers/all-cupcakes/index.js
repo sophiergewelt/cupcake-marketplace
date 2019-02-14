@@ -8,6 +8,11 @@ const MainContainer = styled.div`
 `;
 
 class AllCupcakes extends Component {
+  sellCupcakes = () => {
+    location.href = "/sell";
+    // to = /sell
+  };
+
   render() {
     return (
       <MainContainer>
