@@ -39,7 +39,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 const store = createStore(
   cupcakeReducer,
-  { cupcakes: [] }, // initial state
+  { cupcakes: [], searchResult: [] }, // initial state
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

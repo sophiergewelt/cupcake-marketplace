@@ -4,6 +4,7 @@ import DisplayAllCupcakes from "../../Components/display-all-cupcakes/";
 import styled from "styled-components";
 import Logout from "../../Components/login/logout";
 import SearchResult from "../../Components/search-result/index.js";
+import { connect } from "react-redux";
 
 const MainContainer = styled.div`
   text-align: -webkit-center;
@@ -26,7 +27,11 @@ class AllCupcakes extends Component {
               />
             </a>
           </div>
-          <DisplayAllCupcakes />
+          {this.props.searchResult.length > 0 ? (
+            <SearchResult />
+          ) : (
+            <DisplayAllCupcakes />
+          )}
           <Logout />
         </div>
       </MainContainer>
@@ -34,4 +39,8 @@ class AllCupcakes extends Component {
   }
 }
 
-export default AllCupcakes;
+let ConnectedCupcakes = connect(state => {
+  return { searchResult: state.searchResult };
+})(AllCupcakes);
+
+export default ConnectedCupcakes;

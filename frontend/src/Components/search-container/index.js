@@ -28,4 +28,8 @@ class SearchContainer extends Component {
   }
 }
 
-export default SearchContainer;
+let ConnectedSearchContainer = connect(state => {
+  return { searchCupcakes: state.SearchResult };
+})(SearchContainer);
+
+export default ConnectedSearchContainer;

@@ -8,8 +8,7 @@ class SearchBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "",
-      searchCupcakesArray: []
+      query: ""
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,18 +40,8 @@ class SearchBox extends Component {
           cupcakes: body.cupcakes
         });
         console.log("body", body);
-      })
-      .then(() => this.renderSearchResults());
-    console.log("I'm sending to the server for search: ", body);
+      });
   }
-
-  renderSearchResults = () => {
-    let result = [];
-    console.log("this.props.searchCupcakes", this.props.searchCupcakes);
-    if (!!this.props.searchCupcakes) {
-      return this.props.searchCupcakes;
-    }
-  };
 
   render() {
     return (

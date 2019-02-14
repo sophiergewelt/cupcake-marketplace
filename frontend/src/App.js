@@ -5,12 +5,10 @@ import AllCupcakes from "./Containers/all-cupcakes/";
 import Homepage from "./Containers/homepage/";
 import Signup from "./Components/signup/";
 import CupcakePage from "./Components/cupcakePage/CupcakePage.js";
-// import AddCupcake from "./Components/addcupcake/AddCupcake";
 import AddCupcake from "./Components/add-cupcake/";
 import SearchBox from "./Components/search-box";
-import SearchContainer from "./Components/search-container";
 import SearchResult from "./Components/search-result";
-// import Cart from "./Components/buy-cupcake"
+import { connect } from "react-redux";
 
 class App extends Component {
   renderAllCupcakes = () => {
@@ -46,9 +44,8 @@ class App extends Component {
               <a href="http://localhost:3000/all-cupcakes">
                 <img className="banner-logo" src="/banner.png" alt="banner" />
               </a>
-              <SearchContainer />
+              {this.props.loggedIn ? <SearchBox /> : <React.Fragment />}
             </header>
-            <SearchResult />
             <Route
               exact={true}
               path="/all-cupcakes"
@@ -74,4 +71,8 @@ class App extends Component {
   }
 }
 
-export default App;
+let ConnectedApp = connect(state => {
+  return { loggedIn: state.loggedIn };
+})(App);
+
+export default ConnectedApp;
