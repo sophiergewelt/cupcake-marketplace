@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import "./cupcakePage.css";
 import BuyCupcake from "../../Components/buy-cupcake/BuyCupcake.js";
 
 const StyledContainer = styled.div`

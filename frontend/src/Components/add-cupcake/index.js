@@ -5,19 +5,22 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   margin-top: 3%;
-  margin-left: 25%;
+  margin-top: 100px;
 `;
+
+const StyledLabel = styled.label`
+  font-size: 15px;
+`;
+
 const StyledFormItem = styled.div`
   margin-bottom: 3%;
   display: flex;
   flex-direction: column;
   width: 400px;
   label {
-    /* color: blue; */
     margin-bottom: 2%;
   }
   .submit-button {
-    /* color: red; */
     width: 100px;
     margin-top: -8px;
   }
@@ -72,7 +75,6 @@ class AddCupcake extends Component {
         picture: fileReader.result,
         pictureType: file.type
       });
-      debugger;
     };
   };
 
@@ -107,7 +109,9 @@ class AddCupcake extends Component {
         <div id="addacupcake_form_div">
           <StyledForm>
             <StyledFormItem>
-              <label for="name">Cupcake's wonderful name (max 100 KB):</label>
+              <StyledLabel for="name">
+                Cupcake's wonderful name (max 100 KB):
+              </StyledLabel>
               <input
                 type="text"
                 name="name"
@@ -117,9 +121,9 @@ class AddCupcake extends Component {
               />
             </StyledFormItem>
             <StyledFormItem>
-              <label for="picture">
+              <StyledLabel for="picture">
                 Select a file that best represent your magnificient cupcake:
-              </label>
+              </StyledLabel>
               <input
                 type="file"
                 name="picture"
@@ -127,7 +131,9 @@ class AddCupcake extends Component {
               />
             </StyledFormItem>
             <StyledFormItem>
-              <label for="price">Cupcake's special friend's price:</label>
+              <StyledLabel for="price">
+                Cupcake's special friend's price:
+              </StyledLabel>
               <input
                 type="number"
                 name="price"
@@ -138,7 +144,9 @@ class AddCupcake extends Component {
               />
             </StyledFormItem>
             <StyledFormItem>
-              <label for="category">Cupcake's unique category:</label>
+              <StyledLabel for="category">
+                Cupcake's unique category:
+              </StyledLabel>
               <select
                 class="select_display"
                 name="category"
@@ -157,7 +165,9 @@ class AddCupcake extends Component {
               </select>
             </StyledFormItem>
             <StyledFormItem>
-              <label for="price">Cupcake's intimate description:</label>
+              <StyledLabel for="price">
+                Cupcake's intimate description:
+              </StyledLabel>
               <StyledTextarea
                 name="description"
                 placeholder="Fantastic description"
@@ -165,9 +175,9 @@ class AddCupcake extends Component {
               />
             </StyledFormItem>
             <StyledFormItem>
-              <label for="price">
+              <StyledLabel for="price">
                 Number of fabulous cupackes you are ready to part with:
-              </label>
+              </StyledLabel>
               <input
                 class="number_input"
                 type="number"
