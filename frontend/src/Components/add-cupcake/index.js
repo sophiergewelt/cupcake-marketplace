@@ -138,101 +138,6 @@ class AddCupcake extends Component {
   render() {
     console.log(this.state);
     return (
-<<<<<<< Updated upstream
-      <div>
-        <div id="addacupcake_form_div">
-          <StyledForm>
-            <StyledFormItem>
-              <StyledLabel for="name">
-                Cupcake's wonderful name (max 100 KB):
-              </StyledLabel>
-              <input
-                type="text"
-                name="name"
-                placeholder="product's name"
-                value={this.state.name}
-                onChange={event => this.handleChange(event)}
-              />
-            </StyledFormItem>
-            <StyledFormItem>
-              <StyledLabel for="picture">
-                Select a file that best represent your magnificient cupcake:
-              </StyledLabel>
-              <input
-                type="file"
-                name="picture"
-                onChange={this.handleFileInputChange}
-              />
-            </StyledFormItem>
-            <StyledFormItem>
-              <StyledLabel for="price">
-                Cupcake's special friend's price:
-              </StyledLabel>
-              <input
-                type="number"
-                name="price"
-                min="0"
-                max="999"
-                placeholder="0"
-                onChange={event => this.handlePriceChange(event)}
-              />
-            </StyledFormItem>
-            <StyledFormItem>
-              <StyledLabel for="category">
-                Cupcake's unique category:
-              </StyledLabel>
-              <select
-                class="select_display"
-                name="category"
-                onChange={event => this.handleChange(event)}
-              >
-                <option value="" disabled selected>
-                  Please select a flavour!
-                </option>
-                <option value="Vanilla">Vanilla</option>
-                <option value="Chocolate">Chocolate</option>
-                <option value="Carrot">Carrot</option>
-                <option value="Coconut">Coconut</option>
-                <option value="Cookies and cream">Cookies and cream</option>
-                <option value="Vegan">Vegan</option>
-                <option value="Other frivolity">Other frivolity</option>
-              </select>
-            </StyledFormItem>
-            <StyledFormItem>
-              <StyledLabel for="price">
-                Cupcake's intimate description:
-              </StyledLabel>
-              <StyledTextarea
-                name="description"
-                placeholder="Fantastic description"
-                onChange={event => this.handleChange(event)}
-              />
-            </StyledFormItem>
-            <StyledFormItem>
-              <StyledLabel for="price">
-                Number of fabulous cupackes you are ready to part with:
-              </StyledLabel>
-              <input
-                class="number_input"
-                type="number"
-                name="stock"
-                min="0"
-                max="999"
-                placeholder="0"
-                onChange={event => this.handleChange(event)}
-              />
-            </StyledFormItem>
-            <StyledFormItem>
-              <input
-                class="submit-button"
-                type="submit"
-                onClick={this.handleSubmit}
-              />
-            </StyledFormItem>
-          </StyledForm>
-        </div>
-      </div>
-=======
       <StyledContainer>
         <StyledH1>Sell your special cupcake. Fill this form!</StyledH1>
         <StyledForm>
@@ -325,7 +230,6 @@ class AddCupcake extends Component {
           </StyledFormItem>
         </StyledForm>
       </StyledContainer>
->>>>>>> Stashed changes
     );
   }
 }
