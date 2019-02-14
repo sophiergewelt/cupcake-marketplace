@@ -72,7 +72,6 @@ class SingleCupcake extends Component {
             <StyledName className="name">
               <Link
                 style={{
-                  paddingLeft: 13,
                   textDecoration: "none",
                   color: "#353535"
                 }}
