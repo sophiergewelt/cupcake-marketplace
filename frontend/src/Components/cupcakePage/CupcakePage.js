@@ -13,6 +13,7 @@ const StyledContainer = styled.div`
 
 const StyledImageContainer = styled.img`
   width: 350px;
+  background: #fff;
   border-radius: 2% 0% 0% 2%;
   border-style: solid;
   border-color: #fcedef;
