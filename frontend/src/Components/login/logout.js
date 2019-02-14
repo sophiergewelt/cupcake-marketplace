@@ -2,24 +2,18 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
+import Login from "./index";
 
 class Logout extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    // this.handlelogout = this.handlelogout.bind(this);
   }
-  //   handlelogout(event) {
-
-  //   }
 
   render() {
-    // {
-    //   success = false;
-    // }
     return (
       <div>
-        <Link className="loginOnSignupPage" to={"/"}>
+        <Link to={"/"} onClick={Login}>
           LOG OUT
         </Link>
       </div>
