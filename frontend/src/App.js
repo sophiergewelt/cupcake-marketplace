@@ -7,7 +7,10 @@ import Signup from "./Components/signup/";
 import CupcakePage from "./Components/cupcakePage/CupcakePage.js";
 // import AddCupcake from "./Components/addcupcake/AddCupcake";
 import AddCupcake from "./Components/add-cupcake/";
-import Search from "./Components/search";
+import SearchBox from "./Components/search-box";
+import SearchContainer from "./Components/search-container";
+import SearchResult from "./Components/search-result";
+// import Cart from "./Components/buy-cupcake"
 
 class App extends Component {
   renderAllCupcakes = () => {
@@ -26,17 +29,13 @@ class App extends Component {
     return <AddCupcake />;
   };
 
-  // renderAddCupcake = () => {
-  //   return <AddCupcake />;
-  // };
-
   renderGetCupcake = routerData => {
     return <CupcakePage itemid={routerData.match.params.id} />;
   };
 
-  // renderCart = () => {
-  //   return <Cart />;
-  // };
+  renderSearchedCupcakes = () => {
+    return <SearchResult />;
+  };
 
   render() {
     return (
@@ -47,9 +46,9 @@ class App extends Component {
               <a href="http://localhost:3000/all-cupcakes">
                 <img className="banner-logo" src="/banner.png" alt="banner" />
               </a>
-              <Search />
+              <SearchContainer />
             </header>
-
+            <SearchResult />
             <Route
               exact={true}
               path="/all-cupcakes"
@@ -63,7 +62,11 @@ class App extends Component {
               path="/getcupcake/:id"
               render={this.renderGetCupcake}
             />
-            {/* <Route exact={true} path="/cart" render={this.renderCart} /> */}
+            <Route
+              exact={true}
+              path="/search-result"
+              render={this.renderSearchedCupcakes}
+            />
           </div>
         </BrowserRouter>
       </div>

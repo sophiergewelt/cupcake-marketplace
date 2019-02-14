@@ -3,6 +3,8 @@ import "./all-cupcakes.css";
 import DisplayAllCupcakes from "../../Components/display-all-cupcakes/";
 import styled from "styled-components";
 import Logout from "../../Components/login/logout";
+import SearchResult from "../../Components/search-result/index.js";
+
 const MainContainer = styled.div`
   text-align: -webkit-center;
 `;

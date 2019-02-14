@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../../App.js";
-import "./single-cupcake.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -56,10 +55,6 @@ const StyledCategory = styled.div`
 const StyledPrice = styled.div`
   font-size: 20px;
 `;
-
-// const StyledStock = styled.div`
-//   font-size: 20px;
-// `;
 
 class SingleCupcake extends Component {
   render() {
