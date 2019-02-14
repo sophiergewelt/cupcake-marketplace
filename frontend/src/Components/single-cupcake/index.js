@@ -55,9 +55,9 @@ const StyledPrice = styled.div`
   font-size: 20px;
 `;
 
-const StyledStock = styled.div`
-  font-size: 20px;
-`;
+// const StyledStock = styled.div`
+//   font-size: 20px;
+// `;
 
 class SingleCupcake extends Component {
   render() {

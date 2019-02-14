@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./all-cupcakes.css";
 import DisplayAllCupcakes from "../../Components/display-all-cupcakes/";
-import Search from "../../search/search";
 import styled from "styled-components";
 import Logout from "../../Components/login/logout";
 const MainContainer = styled.div`
@@ -21,8 +20,7 @@ class AllCupcakes extends Component {
         {/* placeholder for Cart */}
         <input type="button" value="Cart" onClick={this.shoppingCart} />
         <div className="App">
-          <Search />
-          <h3>Browse our cupcakes</h3>
+          <h3>Browse the cupcakes</h3>
           <DisplayAllCupcakes />
           <Logout />
         </div>

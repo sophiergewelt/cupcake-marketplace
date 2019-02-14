@@ -7,6 +7,7 @@ import Signup from "./Components/signup/";
 import CupcakePage from "./Components/cupcakePage/CupcakePage.js";
 // import AddCupcake from "./Components/addcupcake/AddCupcake";
 import AddCupcake from "./Components/add-cupcake/";
+import Search from "./Components/search";
 
 class App extends Component {
   renderAllCupcakes = () => {
@@ -44,7 +45,9 @@ class App extends Component {
           <div>
             <header className="banner">
               <img className="banner-logo" src="/banner.png" alt="banner" />
+              <Search />
             </header>
+
             <Route
               exact={true}
               path="/all-cupcakes"

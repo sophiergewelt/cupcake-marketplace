@@ -6,6 +6,8 @@ let reducer = function(state, action) {
       return { ...state, loggedIn: true };
     case "logout-success":
       return { ...state, loggedIn: false };
+    case "setSearchResult":
+      return { ...state, searchResult: action.cupcakes };
     default:
       return state;
   }

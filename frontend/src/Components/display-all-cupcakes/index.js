@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../../App.js";
-import "./display-all-cupcakes.css";
 import SingleCupcake from "../single-cupcake";
 import styled from "styled-components";
 
