@@ -7,7 +7,8 @@ const ObjectID = require("mongodb").ObjectID;
 const bodyParser = require("body-parser");
 const stripe = require("stripe")("sk_test_ARpzQb6KqDa2TWVSTSlh9SQf");
 
-const url = "mongodb://admin:admin123@ds111993.mlab.com:11993/alibay";
+const url =
+  "mongodb://admin:admin123@ds163255.mlab.com:63255/cupcake-marketplace";
 let dbs = undefined;
 
 MongoClient.connect(url, (err, allDbs) => {
@@ -29,7 +30,7 @@ app.use((req, res, next) => {
 });
 
 app.post("/signup", (req, res) => {
-  let db = dbs.db("alibay");
+  let db = dbs.db("cupcake-marketplace");
   db.collection("users").findOne(
     { username: req.body.username },
     (err, result) => {
@@ -53,7 +54,7 @@ app.post("/signup", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  let db = dbs.db("alibay");
+  let db = dbs.db("cupcake-marketplace");
   db.collection("users").findOne(
     { username: req.body.username },
     (err, result) => {
@@ -83,7 +84,7 @@ app.post("/login", (req, res) => {
 app.get("/images/:name", (req, res) => {});
 
 app.post("/addcupcake", (req, res) => {
-  let db = dbs.db("alibay");
+  let db = dbs.db("cupcake-marketplace");
 
   const fileType = req.body.pictureType;
   const extension = fileType.substring(
@@ -125,7 +126,7 @@ app.post("/addcupcake", (req, res) => {
 });
 
 app.get("/allcupcakes", (req, res) => {
-  let db = dbs.db("alibay");
+  let db = dbs.db("cupcake-marketplace");
   db.collection("cupcakes")
     .find({})
     .toArray((err, result) => {
@@ -135,7 +136,7 @@ app.get("/allcupcakes", (req, res) => {
 });
 
 app.post("/searchcupcakes", (req, res) => {
-  let db = dbs.db("alibay");
+  let db = dbs.db("cupcake-marketplace");
   db.collection("cupcakes").createIndex({
     name: "text",
     description: "text",
@@ -150,7 +151,7 @@ app.post("/searchcupcakes", (req, res) => {
 });
 
 app.post("/getcupcake", (req, res) => {
-  let db = dbs.db("alibay");
+  let db = dbs.db("cupcake-marketplace");
   db.collection("cupcakes")
     .find({ _id: ObjectID(req.body.query) })
     .toArray((err, result) => {
