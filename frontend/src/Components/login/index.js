@@ -40,14 +40,14 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     });
-    fetch("http://178.128.230.45:4000/login", {
+    fetch("http://68.183.197.80:4000/login", {
       method: "POST",
       body: requestBody
     })
       .then(function(x) {
         return x.text(); // should be called x.getResponseBody()
       })
-      .then(responseBody => {
+      .then(responseBody => {§
         // when we receive the body, run this function
         console.log("responseBody from login", responseBody);
         let body = JSON.parse(responseBody);

@@ -4,7 +4,7 @@ import StripeCheckout from "react-stripe-checkout";
 
 class BuyCupcake extends Component {
   onToken = token => {
-    fetch("http://178.128.230.45:4000/save-stripe-token", {
+    fetch("http://68.183.197.80:4000/save-stripe-token", {
       method: "POST",
       body: JSON.stringify({ token: token, price: this.props.sentPrice * 100 })
     }).then(response => {

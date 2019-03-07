@@ -62,7 +62,7 @@ class SingleCupcake extends Component {
       <MainContainer>
         <StyledContainer className="border">
           <StyledImageContainer
-            src={`http://178.128.230.45:4000/${this.props.cupcake.picture}`}
+            src={`http://68.183.197.80:4000/${this.props.cupcake.picture}`}
             alt="one-cupcake"
           />
           <StyledInfoContainer>

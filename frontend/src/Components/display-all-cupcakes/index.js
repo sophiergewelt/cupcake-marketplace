@@ -16,7 +16,7 @@ const MainContainer = styled.div`
 
 class DisplayAllCupcakes extends Component {
   componentDidMount() {
-    fetch("http://178.128.230.45:4000/allcupcakes", {
+    fetch("http://68.183.197.80:4000/allcupcakes", {
       method: "GET"
     })
       .then(x => {

@@ -64,7 +64,7 @@ class CupcakePage extends Component {
 
   componentDidMount = () => {
     let query = JSON.stringify({ query: this.props.itemid });
-    fetch("http://178.128.230.45:4000/getcupcake", {
+    fetch("http://68.183.197.80:4000/getcupcake", {
       method: "POST",
       body: query
     })
@@ -83,7 +83,7 @@ class CupcakePage extends Component {
       <div>
         <StyledContainer>
           <StyledImageContainer
-            src={`http://178.128.230.45:4000//${this.state.cupcake.picture}`}
+            src={`http://68.183.197.80:4000//${this.state.cupcake.picture}`}
           />
           <StyledInfoContainer>
             <StyledH1>{this.state.cupcake.name}</StyledH1>
